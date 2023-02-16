@@ -21,6 +21,6 @@ FROM registry.fedoraproject.org/fedora:34
 RUN dnf -y update
 RUN dnf -y install python3-psycopg2 python3-gunicorn python3-falcon
 COPY python/nearestprime.py /
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "nearestprime:api"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8888", "nearestprime:api"]
 
 

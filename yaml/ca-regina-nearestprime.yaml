@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nearestprime
-        image: docker.io/tedross/nearestprime:latest
+        image: quay.io/adetalho/nearestprime:latest 
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
@@ -24,4 +24,4 @@ spec:
         - name: DDW_HOST
           value: db
         - name: DDW_SITENAME
-          value: apac-prem
+          value: ca-regina

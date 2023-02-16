@@ -72,7 +72,7 @@ done
 exec 2>/dev/tty    # Restore stderr output.
 
 echo "Initialising database"
-./dbsetup
+python3 /home/adetalhouet/skupper/nearest-prime/tools/dbsetup/python/dbsetup
 
 #echo
 #echo "Postgresql Admin Console access details:"

@@ -24,4 +24,4 @@ spec:
         - name: DDW_HOST
           value: db
         - name: DDW_SITENAME
-          value: usa-prem
+          value: ca-central

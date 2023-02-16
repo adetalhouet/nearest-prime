@@ -26,12 +26,8 @@ public class LoadGen {
 
     private WebClient client;
 
+    @PostConstruct
     void initialize() {
-        if (client != null) {
-            client.close();
-            client = null;
-        }
-
         client = WebClient.create(vertx,
             new WebClientOptions()
                 .setDefaultHost("nearestprime")
@@ -50,9 +46,6 @@ public class LoadGen {
                 } else {
                     failures++;
                 }
-                if (resp.statusCode() != 200) {
-                    initialize();
-                }
                 if (inFlight < concurrency) {
                     sendRequest();
                 }
@@ -63,8 +56,6 @@ public class LoadGen {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/{val}")
     public String setLoad(@PathParam("val") String val) {
-        initialize();
-
         int newVal;
         try {
             newVal = Integer.parseInt(val);
@@ -82,5 +73,4 @@ public class LoadGen {
             concurrency, inFlight, total, failures, lastStatus);
     }
 }
-
 

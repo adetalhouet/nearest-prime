@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nearestprime
+  name: load-gen
+spec:
+  selector:
+    matchLabels:
+      app: load-gen
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: load-gen
+    spec:
+      containers:
+        - name: container
+          image: >-
+             quay.io/adetalho/load-gen-jvm:0.0.1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          securityContext:
+            privileged: true
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  paused: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: load-gen
+  namespace: nearestprime
+spec:
+  selector:
+    app: load-gen
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: loadgen
+  namespace: nearestprime
+spec:
+  to:
+    kind: Service
+    name: load-gen
+    weight: 100
+  port:
+    targetPort: 8080
+  wildcardPolicy: None
