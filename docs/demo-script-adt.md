@@ -6,7 +6,7 @@ oc create ns nearestprime --kubeconfig /home/adetalhouet/skupper/ca-regina-kubec
 oc create ns nearestprime --kubeconfig /home/adetalhouet/skupper/ca-toronto-kubeconfig
 
 
-skupper init --namespace nearestprime --site-name ca-central --console-auth=openshift
+skupper init --namespace nearestprime --site-name ca-central --console-auth=openshift --enable-console --enable-flow-collector
 skupper init --namespace nearestprime --site-name ca-regina --console-auth=openshift --kubeconfig /home/adetalhouet/skupper/ca-regina-kubeconfig
 skupper init --namespace nearestprime --site-name ca-toronto --console-auth=openshift --kubeconfig /home/adetalhouet/skupper/ca-toronto-kubeconfig
 
