@@ -52,3 +52,7 @@ skupper delete --namespace nearestprime --kubeconfig /home/adetalhouet/skupper/c
 skupper delete --namespace nearestprime --kubeconfig /home/adetalhouet/skupper/ca-toronto-kubeconfig
 
 podman rm -f nearest-prime-db 
+
+oc delete ns nearestprime
+oc delete ns nearestprime --kubeconfig /home/adetalhouet/skupper/ca-regina-kubeconfig
+oc delete ns nearestprime --kubeconfig /home/adetalhouet/skupper/ca-toronto-kubeconfig
